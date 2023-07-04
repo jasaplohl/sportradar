@@ -3,3 +3,15 @@
     gap: 1rem;
     overflow: auto;
 }
+
+.carousel-btn {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background-color: red;
+    flex: 0 0 auto;
+}
+
+.carousel-btn:hover {
+    cursor: pointer;
+}

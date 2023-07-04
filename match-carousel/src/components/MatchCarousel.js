@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import './MatchCarousel.css';
 import Card from './Card';
 import { Dna } from 'react-loader-spinner';
@@ -83,19 +83,24 @@ export default class MatchCarousel extends Component {
                 <p key={tournament._id} data-index={index} onClick={onTournamentClick} className="badge">{ tournament.name }</p>
             );
         });
-    };
+    }
 
-    getMatchCards = () => {
+    getMatches = () => {
         const category = this.state.sport?.realcategories[this.state.category];
         const tournament = category?.tournaments[this.state.tournament];
         if (!tournament) {
             return null;
         }
-        const max = this.props.max;
-        const cards = [];
-        for (let i=0; i<Math.min(max, tournament.matches.length); i++) {
-            const match = tournament.matches[i];
-            cards.push(
+        const max = Math.min(this.props.max || 10, tournament.matches.length);
+        return tournament.matches.slice(0, max);
+    };
+
+    getMatchCards = () => {
+        const category = this.state.sport?.realcategories[this.state.category];
+        const tournament = category?.tournaments[this.state.tournament];
+        const matches = this.getMatches();
+        return matches?.map((match) => {
+            return (
                 <Card
                     key={match._id}
                     category={category.name}
@@ -103,14 +108,28 @@ export default class MatchCarousel extends Component {
                     match={match}
                 />
             );
-        }
-        return cards;
+        });
+    }
+
+    getCarouselButtons = () => {
+        const matches = this.getMatches();
+
+        const onBtnClick = (event) => {
+            const index = event.target.getAttribute('data-index');
+            console.log(`Clicked on match ${index}`);
+        };
+
+        return matches?.map((match, index) => {
+            return (
+                <div key={match._id} className="carousel-btn" onClick={onBtnClick} data-index={index}></div>
+            );
+        });
     }
 
     render() {
         if (!this.state.sport) {
             return(
-                <div className="flex justify-center">
+                <div className="padding flex justify-center">
                     <Dna />
                 </div>
             );
@@ -125,11 +144,8 @@ export default class MatchCarousel extends Component {
                     { this.getTournamentBadges() }
                 </div>
                 <div className="carousel">{ this.getMatchCards() }</div>
+                <div className="flex justify-center gap-1">{this.getCarouselButtons()}</div>
             </div>
         );
     }
-};
-
-MatchCarousel.defaultProps = {
-    max: 10,
 };

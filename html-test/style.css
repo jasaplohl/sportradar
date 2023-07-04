@@ -1,6 +1,5 @@
 html {
-    font-family: 'Geologica', sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 p, h1, h2 {
@@ -103,7 +102,12 @@ p, h1, h2 {
     }
 
     p {
-        margin-block: 0.3rem;
+        margin-block: 0.1rem;
+    }
+
+    .pill {
+        margin-bottom: 0.1rem;
+        padding-block: 0.1rem;
     }
 }
 

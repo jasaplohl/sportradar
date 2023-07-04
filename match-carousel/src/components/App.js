@@ -3,7 +3,7 @@ import MatchCarousel from "./MatchCarousel";
 
 const App = () => {
     return(
-        <div>
+        <div className="app">
             <header>
                 <p>Navigation between the two tabs</p>
             </header>

@@ -1,8 +1,9 @@
-import React from "react";
+import { Component } from 'react';
 import './MatchCarousel.css';
-import Card from "./Card";
+import Card from './Card';
+import { Dna } from 'react-loader-spinner';
 
-export default class MatchCarousel extends React.Component {
+export default class MatchCarousel extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,14 +46,34 @@ export default class MatchCarousel extends React.Component {
         console.log(chosenSport);
     }
 
+    getCategories() {
+        return this.state.sport?.realcategories.map((category) => {
+            return (
+                <div key={category._id}>
+                    <p>{ category.name }</p>
+                </div>
+            );
+        });
+    }
+
     render() {
+        if (!this.state.sport) {
+            return(
+                <div className="flex justify-center">
+                    <Dna />
+                </div>
+            );
+        }
         return(
             <div>
-                <p>Sport: { this.state.sport?.name }</p>
-                <div className="carousel">
-                    <Card />
-                    <Card />
-                    <Card />
+                <p>Sport: { this.state.sport.name }</p>
+                <div className="flex">
+                    <div>{this.getCategories()}</div>
+                    <div className="carousel">
+                        <Card />
+                        <Card />
+                        <Card />
+                    </div>
                 </div>
             </div>
         );

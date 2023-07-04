@@ -1,0 +1,12 @@
+html, body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}

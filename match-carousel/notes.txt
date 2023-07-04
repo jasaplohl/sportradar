@@ -1,0 +1,4 @@
+Project structure:
+
+Dependencies:
+- react-loader-spinner

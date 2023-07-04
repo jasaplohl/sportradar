@@ -1,0 +1,10 @@
+.app {
+    background-color: black;
+    min-height: 100vh;
+    color: white;
+}
+
+header {
+    padding-block: 1rem;
+    padding-inline: 2rem;
+}

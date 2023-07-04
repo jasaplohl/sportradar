@@ -1,0 +1,121 @@
+p, h1, h2 {
+    font-weight: normal;
+    margin-block: 0.5rem;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    width: 30rem;
+    aspect-ratio: 16/10;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    transition: width 0.5s, height 0.5s;
+}
+
+.card-background-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    filter: brightness(0.3);
+}
+
+.card-header {
+    z-index: 1;
+    text-align: center;
+}
+
+.card-details {
+    z-index: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.card-footer {
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.team {
+    width: 7rem;
+    word-break: normal;
+}
+
+.flag {
+    width: 100%;
+    aspect-ratio: 16/10;
+    height: auto;
+    transition: width 0.5s, height 0.5s;
+}
+
+.pill {
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    margin-bottom: 2rem;
+    background-color: grey;
+    border-radius: 0.25rem;
+    text-align: center;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+@media (max-width: 870px) {
+    h1 {
+        font-size: 1.5rem;
+        margin-block: 0.3rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin-block: 0.3rem;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    .flag {
+        width: 35%;
+    }
+
+    .pill {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .card {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    p {
+        margin-block: 0.1rem;
+    }
+
+    .pill {
+        margin-bottom: 0.1rem;
+        padding-block: 0.1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    h1, h2 {
+        font-size: 1rem;
+    }
+
+    .pill {
+        font-size: 0.8rem;
+    }
+}

@@ -8,6 +8,8 @@ export default class MatchCarousel extends Component {
         super(props);
         this.state = {
             sport: undefined,
+            category: 0,
+            tournament: 0,
             error: undefined
         };
     }
@@ -46,7 +48,7 @@ export default class MatchCarousel extends Component {
         console.log(chosenSport);
     }
 
-    getCategories() {
+    getCategoriesDropdown() {
         return this.state.sport?.realcategories.map((category) => {
             return (
                 <div key={category._id}>
@@ -54,6 +56,25 @@ export default class MatchCarousel extends Component {
                 </div>
             );
         });
+    }
+
+    getMatchCards() {
+        const category = this.state.sport?.realcategories[this.state.category];
+        const tournament = category?.tournaments[this.state.tournament];
+        const max = this.props.max || 10;
+        const cards = [];
+        for (let i=0; i<Math.min(max, tournament.matches.length); i++) {
+            const match = tournament.matches[i];
+            cards.push(
+                <Card
+                    key={match._id}
+                    category={category.name}
+                    tournament={`${tournament.name} - ${tournament.seasontypename}`}
+                    match={match}
+                />
+            );
+        }
+        return cards;
     }
 
     render() {
@@ -66,14 +87,13 @@ export default class MatchCarousel extends Component {
         }
         return(
             <div>
-                <p>Sport: { this.state.sport.name }</p>
+                <p>{ this.state.sport.name }</p>
                 <div className="flex">
+                    {/*
+                    TODO: Handle categories and tournaments (dropdown for categories and pills for tournaments?)
                     <div>{this.getCategories()}</div>
-                    <div className="carousel">
-                        <Card />
-                        <Card />
-                        <Card />
-                    </div>
+                    */}
+                    <div className="carousel">{ this.getMatchCards() }</div>
                 </div>
             </div>
         );

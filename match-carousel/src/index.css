@@ -10,3 +10,18 @@ html, body {
 .justify-center {
     justify-content: center;
 }
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.container {
+    padding-block: 1rem;
+    padding-inline: 2rem;
+}
+
+select {
+    border-radius: 0.5rem;
+    padding-inline: 1rem;
+    min-width: 15rem;
+}

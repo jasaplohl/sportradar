@@ -18,7 +18,7 @@ export default class MatchCarousel extends Component {
         await this.fetchData();
     }
 
-    async fetchData() {
+    fetchData = async () => {
         try {
             const res = await fetch('https://lmt.fn.sportradar.com/demolmt/en/Etc:UTC/gismo/event_fullfeed/0/1/12074');
             const body = await res.json();
@@ -31,7 +31,7 @@ export default class MatchCarousel extends Component {
         }
     }
 
-    parseSports(sports) {
+    parseSports = (sports) => {
         if (!sports || sports.length === 0) {
             throw new Error('Could not get the sports');
         }
@@ -48,17 +48,26 @@ export default class MatchCarousel extends Component {
         console.log(chosenSport);
     }
 
-    getCategoriesDropdown() {
-        return this.state.sport?.realcategories.map((category) => {
+    getCategoryDropdown = () => {
+        const options = this.state.sport?.realcategories.map((category, index) => {
             return (
-                <div key={category._id}>
-                    <p>{ category.name }</p>
-                </div>
+                <option key={category._id} value={index}>{ category.name }</option>
             );
+        });
+        return (
+            <select value={this.state.category} onChange={this.onCategoryChange}>
+                { options }
+            </select>
+        );
+    }
+
+    onCategoryChange = (event) => {
+        this.setState({
+            category: event.target.value,
         });
     }
 
-    getMatchCards() {
+    getMatchCards = () => {
         const category = this.state.sport?.realcategories[this.state.category];
         const tournament = category?.tournaments[this.state.tournament];
         const max = this.props.max || 10;
@@ -86,13 +95,13 @@ export default class MatchCarousel extends Component {
             );
         }
         return(
-            <div>
-                <p>{ this.state.sport.name }</p>
+            <div className="container">
+                <div className="flex gap-1">
+                    <h1>{ this.state.sport.name }</h1>
+                    { this.getCategoryDropdown() }
+                </div>
+                {/* TODO: pills for categories */}
                 <div className="flex">
-                    {/*
-                    TODO: Handle categories and tournaments (dropdown for categories and pills for tournaments?)
-                    <div>{this.getCategories()}</div>
-                    */}
                     <div className="carousel">{ this.getMatchCards() }</div>
                 </div>
             </div>

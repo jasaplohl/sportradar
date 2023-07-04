@@ -7,21 +7,58 @@ html, body {
     display: flex;
 }
 
+.flex-col {
+    flex-direction: column;
+}
+
 .justify-center {
     justify-content: center;
 }
 
+.items-center {
+    align-items: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
 .gap-1 {
+    gap: 0.5rem;
+}
+
+.gap-2 {
     gap: 1rem;
 }
 
-.container {
+.padding {
     padding-block: 1rem;
     padding-inline: 2rem;
+}
+
+.badge {
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    background-color: red;
+    border-radius: 2rem;
+    color: black;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge:hover {
+    cursor: pointer;
 }
 
 select {
     border-radius: 0.5rem;
     padding-inline: 1rem;
+    padding-block: 0.5rem;
     min-width: 15rem;
+    color: white;
+    background-color: black;
+}
+
+option {
+    padding-block: 0.5rem;
 }

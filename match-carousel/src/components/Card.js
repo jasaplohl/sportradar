@@ -27,7 +27,7 @@ const Card = (props) => {
             </div>
             <div className="card-details">
                 <div className="team">
-                    <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.home._id}.png`} alt="Crest"/>
+                    <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.home.uid}.png`} alt="Crest"/>
                     <h1>{match.teams.home.abbr}</h1>
                 </div>
                 <div>
@@ -36,7 +36,7 @@ const Card = (props) => {
                     <p>23/12/13</p>
                 </div>
                 <div  className="team">
-                    <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.away._id}.png`} alt="Crest"/>
+                    <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.away.uid}.png`} alt="Crest"/>
                     <h1>{match.teams.away.abbr}</h1>
                 </div>
             </div>

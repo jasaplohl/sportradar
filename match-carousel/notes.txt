@@ -1,4 +1,14 @@
 Project structure:
+- components/App.js
+- components/App.css
+- components/MatchCarousel.js
+- components/MatchCarousel.css
+- components/Card.js
+- components/Card.css
 
 Dependencies:
 - react-loader-spinner
+
+Improvements:
+- Routing between the tabs so that refreshing doesn't return you to the initial tab
+- Don't fetch unnecessary sport data

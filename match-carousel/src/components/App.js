@@ -1,16 +1,37 @@
 import './App.css';
-import MatchCarousel from "./MatchCarousel";
+import MatchCarousel from './MatchCarousel';
+import {useState} from 'react';
+
+// TODO: Testing and vitals
+
+const getTabContent = (tab) => {
+    if (tab === 0) {
+        return (
+            <div key={0}>
+                <MatchCarousel sportId={1} />
+            </div>
+        );
+    } else {
+        return (
+            <div key={1}>
+                <MatchCarousel />
+                <MatchCarousel max={15}/>
+            </div>
+        );
+    }
+}
 
 const App = () => {
+    const [tab, setTab] = useState(0);
     return(
         <div className="app">
             <header>
-                <p>Navigation between the two tabs</p>
-                <p>First tab displays a single carousel with max 10 matches</p>
-                <p>Second tab displays a two carousels for different sports</p>
+                <nav>
+                    <button onClick={() => setTab(0)} className="nav-btn">First tab</button>
+                    <button onClick={() => setTab(1)} className="nav-btn">Second tab</button>
+                </nav>
             </header>
-            <MatchCarousel sportId={1} />
-            <MatchCarousel max={15}/>
+            { getTabContent(tab) }
         </div>
     );
 }

@@ -45,7 +45,6 @@ export default class MatchCarousel extends Component {
         this.setState({
             sport: chosenSport,
         });
-        console.log(chosenSport);
     }
 
     getCategoryDropdown = () => {
@@ -92,7 +91,7 @@ export default class MatchCarousel extends Component {
         if (!tournament) {
             return null;
         }
-        const max = this.props.max || 10;
+        const max = this.props.max;
         const cards = [];
         for (let i=0; i<Math.min(max, tournament.matches.length); i++) {
             const match = tournament.matches[i];
@@ -129,4 +128,8 @@ export default class MatchCarousel extends Component {
             </div>
         );
     }
+};
+
+MatchCarousel.defaultProps = {
+    max: 10,
 };

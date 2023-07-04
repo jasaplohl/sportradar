@@ -7,4 +7,20 @@
 header {
     padding-block: 1rem;
     padding-inline: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: 1px solid white;
+}
+
+.nav-btn {
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.nav-btn:hover {
+    cursor: pointer;
 }

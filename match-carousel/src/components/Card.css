@@ -78,8 +78,8 @@ p, h1, h2 {
         margin-block: 0.3rem;
     }
 
-    .flag {
-        width: 35%;
+    .team {
+        width: 15%;
     }
 
     .pill {
@@ -92,8 +92,12 @@ p, h1, h2 {
         font-size: 1.3rem;
     }
 
+    h2 {
+        font-size: 1rem;
+    }
+
     p {
-        margin-block: 0.1rem;
+        margin-block: 0;
     }
 
     .pill {

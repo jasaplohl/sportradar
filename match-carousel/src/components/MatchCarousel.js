@@ -55,6 +55,7 @@ export default class MatchCarousel extends Component {
             );
         });
 
+        this.state.currentMatch = 0; // Set the current match without setState so that the animation doesn't start
         const onCategoryChange = (event) => {
             this.setState({
                 category: event.target.value,
@@ -74,6 +75,7 @@ export default class MatchCarousel extends Component {
 
         const onTournamentClick = (event) => {
             const index = event.target.getAttribute('data-index');
+            this.state.currentMatch = 0; // Set the current match without setState so that the animation doesn't start
             this.setState({
                tournament: index,
             });
@@ -144,11 +146,9 @@ export default class MatchCarousel extends Component {
                 <div className="flex wrap gap-xs">
                     { this.getTournamentBadges() }
                 </div>
-                <div className="flex justify-center">
-                    <div className="carousel">
-                        <div className="carousel-inner" style={{ transform: `translateX(${-this.state.currentMatch*100}%)` }}>
-                            { this.getMatchCards() }
-                        </div>
+                <div className="carousel">
+                    <div className="carousel-inner" style={{ transform: `translateX(${-this.state.currentMatch*100}%)` }}>
+                        { this.getMatchCards() }
                     </div>
                 </div>
                 <div className="flex justify-center gap-md">{this.getCarouselButtons()}</div>

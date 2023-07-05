@@ -78,10 +78,6 @@ p, h1, h2 {
         margin-block: 0.3rem;
     }
 
-    .card {
-        width: 80%;
-    }
-
     .flag {
         width: 35%;
     }
@@ -92,10 +88,6 @@ p, h1, h2 {
 }
 
 @media (max-width: 450px) {
-    .card {
-        width: 95%;
-    }
-
     h1 {
         font-size: 1.3rem;
     }

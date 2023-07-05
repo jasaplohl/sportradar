@@ -138,11 +138,9 @@ export default class MatchCarousel extends Component {
             );
         }
         return(
-            <div className="carousel-container flex flex-col gap-sm">
-                <div className="flex gap-md items-center">
-                    <h1>{ this.state.sport.name }</h1>
-                    { this.getCategoryDropdown() }
-                </div>
+            <div className="carousel-container flex flex-col gap-lg">
+                <h1>{ this.state.sport.name }</h1>
+                { this.getCategoryDropdown() }
                 <div className="flex wrap gap-xs">
                     { this.getTournamentBadges() }
                 </div>

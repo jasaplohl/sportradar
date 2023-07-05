@@ -28,3 +28,18 @@
 .carousel-btn:hover {
     cursor: pointer;
 }
+
+@media (max-width: 870px) {
+    .carousel-container {
+        width: 95%;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 450px) {
+
+}
+
+@media (max-width: 320px) {
+
+}

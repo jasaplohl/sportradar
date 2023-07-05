@@ -36,6 +36,10 @@ html, body {
     gap: 0.5rem;
 }
 
+.gap-lg {
+    gap: 1rem;
+}
+
 .badge {
     padding-block: 0.5rem;
     padding-inline: 1rem;

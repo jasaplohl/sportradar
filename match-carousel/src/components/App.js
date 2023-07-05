@@ -7,13 +7,13 @@ import {useState} from 'react';
 const getTabContent = (tab) => {
     if (tab === 0) {
         return (
-            <div key={0}>
+            <div key={0} className="content">
                 <MatchCarousel sportId={1} />
             </div>
         );
     } else {
         return (
-            <div key={1}>
+            <div key={1} className="content">
                 <MatchCarousel />
                 <MatchCarousel max={15}/>
             </div>
@@ -31,9 +31,7 @@ const App = () => {
                     <button onClick={() => setTab(1)} className="nav-btn">Second tab</button>
                 </nav>
             </header>
-            <div className="content">
-                { getTabContent(tab) }
-            </div>
+            { getTabContent(tab) }
         </div>
     );
 }

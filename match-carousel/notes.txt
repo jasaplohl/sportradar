@@ -10,5 +10,6 @@ Dependencies:
 - react-loader-spinner
 
 Improvements:
+- Use TypeScript
 - Routing between the tabs so that refreshing doesn't return you to the initial tab
 - Don't fetch unnecessary sport data

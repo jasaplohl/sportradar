@@ -7,8 +7,8 @@ p, h1, h2 {
     position: relative;
     overflow: hidden;
     border-radius: 0.5rem;
-    width: 30rem;
-    aspect-ratio: 16/10;
+    width: 100%;
+    aspect-ratio: 16/9;
     display: flex;
     flex: 0 0 auto;
     flex-direction: column;
@@ -51,7 +51,7 @@ p, h1, h2 {
 
 .flag {
     width: 100%;
-    aspect-ratio: 16/10;
+    aspect-ratio: 1/1;
     height: auto;
     transition: width 0.5s, height 0.5s;
 }

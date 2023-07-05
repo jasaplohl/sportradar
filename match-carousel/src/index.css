@@ -23,17 +23,17 @@ html, body {
     flex-wrap: wrap;
 }
 
-.gap-1 {
+.gap-xs {
+    row-gap: 0.25rem;
+    column-gap: 0.25rem;
+}
+
+.gap-sm {
+    gap: 0.25rem;
+}
+
+.gap-md {
     gap: 0.5rem;
-}
-
-.gap-2 {
-    gap: 1rem;
-}
-
-.padding {
-    padding-block: 1rem;
-    padding-inline: 2rem;
 }
 
 .badge {
@@ -44,6 +44,7 @@ html, body {
     color: black;
     font-weight: 600;
     white-space: nowrap;
+    margin-block: 0;
 }
 
 .badge:hover {

@@ -31,7 +31,9 @@ const App = () => {
                     <button onClick={() => setTab(1)} className="nav-btn">Second tab</button>
                 </nav>
             </header>
-            { getTabContent(tab) }
+            <div className="content">
+                { getTabContent(tab) }
+            </div>
         </div>
     );
 }

@@ -10,6 +10,7 @@ export default class MatchCarousel extends Component {
             sport: undefined,
             category: 0,
             tournament: 0,
+            currentMatch: 0,
             error: undefined
         };
     }
@@ -116,12 +117,14 @@ export default class MatchCarousel extends Component {
 
         const onBtnClick = (event) => {
             const index = event.target.getAttribute('data-index');
-            console.log(`Clicked on match ${index}`);
+            this.setState({
+                currentMatch: Number(index)
+            });
         };
 
         return matches?.map((match, index) => {
             return (
-                <div key={match._id} className="carousel-btn" onClick={onBtnClick} data-index={index}></div>
+                <div key={match._id} className={`carousel-btn ${index === this.state.currentMatch && "carousel-btn-active"}`} onClick={onBtnClick} data-index={index}></div>
             );
         });
     }
@@ -129,22 +132,28 @@ export default class MatchCarousel extends Component {
     render() {
         if (!this.state.sport) {
             return(
-                <div className="padding flex justify-center">
+                <div className="carousel-container flex justify-center">
                     <Dna />
                 </div>
             );
         }
         return(
-            <div className="padding flex flex-col gap-2">
-                <div className="flex gap-1 items-center">
+            <div className="carousel-container flex flex-col gap-sm">
+                <div className="flex gap-md items-center">
                     <h1>{ this.state.sport.name }</h1>
                     { this.getCategoryDropdown() }
                 </div>
-                <div className="flex wrap gap-2">
+                <div className="flex wrap gap-xs">
                     { this.getTournamentBadges() }
                 </div>
-                <div className="carousel">{ this.getMatchCards() }</div>
-                <div className="flex justify-center gap-1">{this.getCarouselButtons()}</div>
+                <div className="flex justify-center">
+                    <div className="carousel">
+                        <div className="carousel-inner" style={{ transform: `translateX(${-this.state.currentMatch*100}%)` }}>
+                            { this.getMatchCards() }
+                        </div>
+                    </div>
+                </div>
+                <div className="flex justify-center gap-md">{this.getCarouselButtons()}</div>
             </div>
         );
     }

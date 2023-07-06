@@ -29,10 +29,23 @@
     cursor: pointer;
 }
 
+.carousel-filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-filters > select {
+    flex: 1 1 0;
+}
+
 @media (max-width: 870px) {
     .carousel-container {
         width: 95%;
         margin-inline: auto;
+    }
+
+    .carousel-filters {
+        flex-direction: column;
     }
 }
 

@@ -55,11 +55,11 @@ export default class MatchCarousel extends Component {
             );
         });
 
-        this.state.currentMatch = 0; // Set the current match without setState so that the animation doesn't start
         const onCategoryChange = (event) => {
             this.setState({
                 category: event.target.value,
                 tournament: 0,
+                currentMatch: 0,
             });
         };
 
@@ -70,22 +70,26 @@ export default class MatchCarousel extends Component {
         );
     }
 
-    getTournamentBadges = () => {
+    getTournamentDropdown = () => {
         const category = this.state.sport?.realcategories[this.state.category];
+        const options = category?.tournaments.map((tournament, index) => {
+            return (
+                <option key={tournament._id} value={index}>{ tournament.name }</option>
+            );
+        });
 
-        const onTournamentClick = (event) => {
-            const index = event.target.getAttribute('data-index');
-            this.state.currentMatch = 0; // Set the current match without setState so that the animation doesn't start
+        const onTournamentChange = (event) => {
             this.setState({
-               tournament: index,
+                tournament: event.target.value,
+                currentMatch: 0,
             });
         };
 
-        return category?.tournaments.map((tournament, index) => {
-            return (
-                <p key={tournament._id} data-index={index} onClick={onTournamentClick} className="badge">{ tournament.name }</p>
-            );
-        });
+        return (
+            <select onChange={onTournamentChange}>
+                { options }
+            </select>
+        );
     }
 
     getMatches = () => {
@@ -142,9 +146,9 @@ export default class MatchCarousel extends Component {
         return(
             <div className="carousel-container flex flex-col gap-lg">
                 <h1>{ this.state.sport.name }</h1>
-                { this.getCategoryDropdown() }
-                <div className="flex wrap gap-xs">
-                    { this.getTournamentBadges() }
+                <div className="carousel-filters">
+                    { this.getCategoryDropdown() }
+                    { this.getTournamentDropdown() }
                 </div>
                 <div className="carousel">
                     <div className="carousel-inner" style={{ transform: `translateX(${-this.state.currentMatch*100}%)` }}>

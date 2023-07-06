@@ -19,10 +19,6 @@ html, body {
     align-items: center;
 }
 
-.wrap {
-    flex-wrap: wrap;
-}
-
 .gap-xs {
     row-gap: 0.25rem;
     column-gap: 0.25rem;
@@ -38,20 +34,6 @@ html, body {
 
 .gap-lg {
     gap: 1rem;
-}
-
-.badge {
-    padding-block: 0.5rem;
-    padding-inline: 1rem;
-    background-color: red;
-    border-radius: 2rem;
-    color: black;
-    font-weight: 600;
-    margin-block: 0;
-}
-
-.badge:hover {
-    cursor: pointer;
 }
 
 select {

@@ -1,7 +1,9 @@
-import {Component} from 'react';
+import { Component } from 'react';
 import './MatchCarousel.css';
 import Card from './Card';
 import { Dna } from 'react-loader-spinner';
+import DropDown from './DropDown';
+import { getSport } from '../helpers/dataParser.helper';
 
 export default class MatchCarousel extends Component {
     constructor(props) {
@@ -17,43 +19,16 @@ export default class MatchCarousel extends Component {
     }
 
     async componentDidMount() {
-        await this.fetchData();
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        // if (this.state.sport) {
-        //     this.debounce(this.nextCard);
-        // }
-    }
-
-    fetchData = async () => {
         try {
-            const res = await fetch('https://lmt.fn.sportradar.com/demolmt/en/Etc:UTC/gismo/event_fullfeed/0/1/12074');
-            const body = await res.json();
-            const sports = body.doc[0].data;
-            this.parseSports(sports);
+            this.setState({
+                sport: await getSport(this.props.sportId),
+            });
+            this.debounce(this.nextCard); // Trigger the carousel animation
         } catch(err) {
             // TODO: display error message
             console.error(err);
             this.state.error = err;
         }
-    }
-
-    parseSports = (sports) => {
-        if (!sports || sports.length === 0) {
-            throw new Error('Could not get the sports');
-        }
-        let chosenSport;
-        if (this.props.sportId) {
-            chosenSport = sports.find((s) => s._id === this.props.sportId);
-        } else {
-            const randomIndex = Math.floor(Math.random() * sports.length);
-            chosenSport = sports[randomIndex];
-        }
-        this.setState({
-            sport: chosenSport,
-        });
-        this.debounce(this.nextCard);
     }
 
     debounce = (callback, timeout = 3000) => {
@@ -70,62 +45,29 @@ export default class MatchCarousel extends Component {
             });
         } else {
             const matches = this.getMatches();
-            this.setState({
-                currentMatch: this.state.currentMatch === matches.length - 1 ? 0 : this.state.currentMatch + 1,
-            });
+            if (matches) {
+                this.setState({
+                    currentMatch: this.state.currentMatch === matches.length - 1 ? 0 : this.state.currentMatch + 1,
+                });
+            }
         }
         this.debounce(this.nextCard);
     }
 
-    getCategoryDropdown = () => {
-        const options = this.state.sport?.realcategories.map((category, index) => {
-            return (
-                <option key={category._id} value={index}>{ category.name }</option>
-            );
+    onTournamentChange = (event) => {
+        this.setState({
+            tournament: event.target.value,
+            currentMatch: 0,
         });
+    };
 
-        const onCategoryChange = (event) => {
-            this.setState({
-                category: event.target.value,
-                tournament: 0,
-                currentMatch: 0,
-            });
-        };
-
-        return (
-            <div className="flex flex-col">
-                <small>Categories</small>
-                <select onChange={onCategoryChange}>
-                    { options }
-                </select>
-            </div>
-        );
-    }
-
-    getTournamentDropdown = () => {
-        const category = this.state.sport?.realcategories[this.state.category];
-        const options = category?.tournaments.map((tournament, index) => {
-            return (
-                <option key={tournament._id} value={index}>{ tournament.name }</option>
-            );
+    onCategoryChange = (event) => {
+        this.setState({
+            category: event.target.value,
+            tournament: 0,
+            currentMatch: 0,
         });
-
-        const onTournamentChange = (event) => {
-            this.setState({
-                tournament: event.target.value,
-                currentMatch: 0,
-            });
-        };
-
-        return (
-            <div className="flex flex-col">
-                <small>Tournaments</small>
-                <select onChange={onTournamentChange}>
-                    { options }
-                </select>
-            </div>
-        );
-    }
+    };
 
     getMatches = () => {
         const category = this.state.sport?.realcategories[this.state.category];
@@ -180,8 +122,16 @@ export default class MatchCarousel extends Component {
             <div className="carousel-container flex flex-col gap-lg">
                 <h1>{ this.state.sport.name }</h1>
                 <div className="carousel-filters">
-                    { this.getCategoryDropdown() }
-                    { this.getTournamentDropdown() }
+                    <DropDown
+                        label="Categories"
+                        options={this.state.sport.realcategories}
+                        callback={this.onCategoryChange}
+                    />
+                    <DropDown
+                        label="Tournaments"
+                        options={this.state.sport.realcategories[this.state.category].tournaments}
+                        callback={this.onTournamentChange}
+                    />
                 </div>
                 <div className="carousel">
                     <div className="carousel-inner" style={{ transform: `translateX(${-this.state.currentMatch*100}%)` }}>

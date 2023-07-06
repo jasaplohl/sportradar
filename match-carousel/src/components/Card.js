@@ -28,9 +28,12 @@ const Card = (props) => {
             <div className="card-details">
                 <div className="team">
                     <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.home.uid}.png`} alt="Crest"/>
+                    {/*TODO: Display short name for smaller screens only*/}
+                    {/*<h1>{match.teams.home.name}</h1>*/}
                     <h1>{match.teams.home.abbr}</h1>
                 </div>
                 <div>
+                    {/*TODO: Match time*/}
                     <h2>VS</h2>
                     <h2>21:00</h2>
                     <p>23/12/13</p>

@@ -8,14 +8,14 @@ const getTabContent = (tab) => {
     if (tab === 0) {
         return (
             <div key={0} className="content">
-                <MatchCarousel sportId={1} />
+                <MatchCarousel max={10} />
             </div>
         );
     } else {
         return (
             <div key={1} className="content">
+                <MatchCarousel sportId={1} />
                 <MatchCarousel />
-                <MatchCarousel max={15}/>
             </div>
         );
     }

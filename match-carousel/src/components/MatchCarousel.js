@@ -64,9 +64,12 @@ export default class MatchCarousel extends Component {
         };
 
         return (
-            <select onChange={onCategoryChange}>
-                { options }
-            </select>
+            <div className="flex flex-col">
+                <small>Categories</small>
+                <select onChange={onCategoryChange}>
+                    { options }
+                </select>
+            </div>
         );
     }
 
@@ -86,9 +89,12 @@ export default class MatchCarousel extends Component {
         };
 
         return (
-            <select onChange={onTournamentChange}>
-                { options }
-            </select>
+            <div className="flex flex-col">
+                <small>Tournaments</small>
+                <select onChange={onTournamentChange}>
+                    { options }
+                </select>
+            </div>
         );
     }
 

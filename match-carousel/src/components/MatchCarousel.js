@@ -4,6 +4,7 @@ import Card from './Card';
 import { Dna } from 'react-loader-spinner';
 import DropDown from './DropDown';
 import { getSport } from '../helpers/dataParser.helper';
+import CarouselNav from "./CarouselNav";
 
 export default class MatchCarousel extends Component {
     constructor(props) {
@@ -54,21 +55,6 @@ export default class MatchCarousel extends Component {
         this.debounce(this.nextCard);
     }
 
-    onTournamentChange = (event) => {
-        this.setState({
-            tournament: event.target.value,
-            currentMatch: 0,
-        });
-    };
-
-    onCategoryChange = (event) => {
-        this.setState({
-            category: event.target.value,
-            tournament: 0,
-            currentMatch: 0,
-        });
-    };
-
     getMatches = () => {
         const category = this.state.sport?.realcategories[this.state.category];
         const tournament = category?.tournaments[this.state.tournament];
@@ -95,20 +81,25 @@ export default class MatchCarousel extends Component {
         });
     }
 
-    getCarouselButtons = () => {
-        const matches = this.getMatches();
-
-        const onBtnClick = (event) => {
-            const index = event.target.getAttribute('data-index');
-            this.nextCard(Number(index));
-        };
-
-        return matches?.map((match, index) => {
-            return (
-                <div key={match._id} className={`carousel-btn ${index === this.state.currentMatch && "carousel-btn-active"}`} onClick={onBtnClick} data-index={index}></div>
-            );
+    onTournamentChange = (event) => {
+        this.setState({
+            tournament: event.target.value,
+            currentMatch: 0,
         });
-    }
+    };
+
+    onCategoryChange = (event) => {
+        this.setState({
+            category: event.target.value,
+            tournament: 0,
+            currentMatch: 0,
+        });
+    };
+
+    onNavBtnClick = (event) => {
+        const index = event.target.getAttribute('data-index');
+        this.nextCard(Number(index));
+    };
 
     render() {
         if (!this.state.sport) {
@@ -138,7 +129,11 @@ export default class MatchCarousel extends Component {
                         { this.getMatchCards() }
                     </div>
                 </div>
-                <div className="flex justify-center gap-md">{this.getCarouselButtons()}</div>
+                <CarouselNav
+                    matchList={this.getMatches()}
+                    callback={this.onNavBtnClick}
+                    currentMatch={this.state.currentMatch}
+                />
             </div>
         );
     }

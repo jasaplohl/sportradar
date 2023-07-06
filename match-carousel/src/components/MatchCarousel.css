@@ -17,23 +17,6 @@
     transition: 0.5s ease;
 }
 
-.carousel-btn {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    border: 1px solid white;
-    flex: 0 0 auto;
-    transition: 0.5s;
-}
-
-.carousel-btn-active {
-    background-color: white;
-}
-
-.carousel-btn:hover {
-    cursor: pointer;
-}
-
 .carousel-filters {
     display: flex;
     gap: 0.5rem;

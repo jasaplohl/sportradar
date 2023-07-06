@@ -11,12 +11,19 @@ export default class MatchCarousel extends Component {
             category: 0,
             tournament: 0,
             currentMatch: 0,
-            error: undefined
+            error: undefined,
+            timerId: undefined
         };
     }
 
     async componentDidMount() {
         await this.fetchData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // if (this.state.sport) {
+        //     this.debounce(this.nextCard);
+        // }
     }
 
     fetchData = async () => {
@@ -46,6 +53,28 @@ export default class MatchCarousel extends Component {
         this.setState({
             sport: chosenSport,
         });
+        this.debounce(this.nextCard);
+    }
+
+    debounce = (callback, timeout = 3000) => {
+        clearTimeout(this.state.timerId);
+        this.setState({
+            timerId: setTimeout(callback, timeout),
+        });
+    }
+
+    nextCard = (matchIndex) => {
+        if (matchIndex || matchIndex === 0) {
+            this.setState({
+                currentMatch: matchIndex,
+            });
+        } else {
+            const matches = this.getMatches();
+            this.setState({
+                currentMatch: this.state.currentMatch === matches.length - 1 ? 0 : this.state.currentMatch + 1,
+            });
+        }
+        this.debounce(this.nextCard);
     }
 
     getCategoryDropdown = () => {
@@ -129,9 +158,7 @@ export default class MatchCarousel extends Component {
 
         const onBtnClick = (event) => {
             const index = event.target.getAttribute('data-index');
-            this.setState({
-                currentMatch: Number(index)
-            });
+            this.nextCard(Number(index));
         };
 
         return matches?.map((match, index) => {

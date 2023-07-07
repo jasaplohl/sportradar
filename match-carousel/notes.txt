@@ -37,6 +37,7 @@ b) Helpers
   - I could only use the short name (maybe display the full name on hover as a tooltip)
 - It is possible that the second tab could display the same sport on both carousels if
   the sportId is not set on any of them
+- Some fields could potentially be empty (the data returned from the API should be typed)
 
 4. Improvements:
 - Use TypeScript

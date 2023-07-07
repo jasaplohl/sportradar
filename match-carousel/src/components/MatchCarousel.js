@@ -26,7 +26,6 @@ export default class MatchCarousel extends Component {
             });
             this.debounce(this.nextCard); // Trigger the carousel animation
         } catch(err) {
-            // TODO: display error message
             console.error(err);
             this.state.error = err;
         }

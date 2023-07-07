@@ -28,19 +28,18 @@ const Card = (props) => {
             <div className="card-details">
                 <div className="team">
                     <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.home.uid}.png`} alt="Crest"/>
-                    {/*TODO: Display short name for smaller screens only*/}
-                    {/*<h1>{match.teams.home.name}</h1>*/}
-                    <h1>{match.teams.home.abbr}</h1>
+                    <h1 className="team-name-long">{match.teams.home.name}</h1>
+                    <h1 className="team-name-short">{match.teams.home.abbr}</h1>
                 </div>
                 <div>
-                    {/*TODO: Match time*/}
                     <h2>VS</h2>
-                    <h2>21:00</h2>
-                    <p>23/12/13</p>
+                    <h2>{match._dt.time}</h2>
+                    <p>{match._dt.date}</p>
                 </div>
                 <div  className="team">
                     <img className="flag" src={`http://img.sportradar.com/ls/crest/big/${match.teams.away.uid}.png`} alt="Crest"/>
-                    <h1>{match.teams.away.abbr}</h1>
+                    <h1 className="team-name-long">{match.teams.away.name}</h1>
+                    <h1 className="team-name-short">{match.teams.away.abbr}</h1>
                 </div>
             </div>
             <div className="card-footer">

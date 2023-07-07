@@ -47,6 +47,18 @@ p, h1, h2 {
 .team {
     width: 7rem;
     word-break: normal;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-name-long {
+    display: block;
+}
+
+.team-name-short {
+    display: none;
 }
 
 .flag {
@@ -84,6 +96,14 @@ p, h1, h2 {
 
     .pill {
         margin-bottom: 0.5rem;
+    }
+
+    .team-name-long {
+        display: none;
+    }
+
+    .team-name-short {
+        display: block;
     }
 }
 

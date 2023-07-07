@@ -1,15 +1,46 @@
-Project structure:
-- components/App.js
-- components/App.css
-- components/MatchCarousel.js
-- components/MatchCarousel.css
-- components/Card.js
-- components/Card.css
+1. Project structure:
+a) Components
+Root of the application
+- src/components/App.js
+- src/components/App.css
 
-Dependencies:
+A match card
+- src/components/Card.js
+- src/components/Card.css
+
+Navigation buttons (dots) on the bottom of the carousel
+- src/components/CarouselNav.js
+- src/components/CarouselNav.css
+
+Dropdown menus for choosing a category and a tournament
+- src/components/DropDown.js
+- src/components/DropDown.css
+
+The match carousel
+- src/components/MatchCarousel.js
+- src/components/MatchCarousel.css
+
+b) Helpers
+- src/helpers/dataParser.helper.js
+  - In charge of fetching the data from the API and extracting a single sport.
+    If a sport ID is passed as an argument, that sport is returned, else a random sport
+    is returned.
+
+2. Dependencies:
 - react-loader-spinner
+  - this is the only third party dependency that I added to the initial project, it provides
+    the animated loading spinners
 
-Improvements:
+3. Known issues:
+- If the team name is too long, it can go out of bounds
+  - I could use the text-overflow: ellipsis property to end the text with "..." if it overflows
+  - I could only use the short name (maybe display the full name on hover as a tooltip)
+- It is possible that the second tab could display the same sport on both carousels if
+  the sportId is not set on any of them
+
+4. Improvements:
 - Use TypeScript
 - Routing between the tabs so that refreshing doesn't return you to the initial tab
-- Don't fetch unnecessary sport data
+- Don't fetch data for all sports if you don't need it
+- Display errors (API call fails, etc..) on the UI (popup)
+- Better way to navigate between sports, categories and tournaments than dropdown menus.

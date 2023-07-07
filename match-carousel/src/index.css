@@ -35,3 +35,19 @@ html, body {
 .gap-lg {
     gap: 1rem;
 }
+
+/**
+    Custom scrollbar
+ */
+::-webkit-scrollbar {
+    height: 1rem;
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+   background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: white;
+}

@@ -13,8 +13,7 @@ const getStatusImage = (statusId) => {
     }
 };
 
-const Card = (props) => {
-    const match = props.match;
+const Card = ({ match, tournamentName, categoryName }) => {
     if (!match) {
         return null;
     }
@@ -22,8 +21,8 @@ const Card = (props) => {
         <div className="card">
             <img src={getStatusImage(match.status._id)} alt="Match status" className="card-background-img" />
             <div className="card-header">
-                <h2>{ props.tournament }</h2>
-                <p>{ props.category }</p>
+                <h2>{ tournamentName }</h2>
+                <p>{ categoryName }</p>
             </div>
             <div className="card-details">
                 <div className="team">

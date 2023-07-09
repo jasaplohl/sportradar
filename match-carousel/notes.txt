@@ -45,3 +45,6 @@ b) Helpers
 - Don't fetch data for all sports if you don't need it
 - Display errors (API call fails, etc..) on the UI (popup)
 - Better way to navigate between sports, categories and tournaments than dropdown menus.
+- More reusable components (Header)
+- I would stop the autoplay animation on hover over the card so that you can take your time
+  to read the information

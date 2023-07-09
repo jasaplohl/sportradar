@@ -2,8 +2,6 @@ import './App.css';
 import MatchCarousel from './MatchCarousel';
 import {useState} from 'react';
 
-// TODO: Testing and vitals
-
 const getTabContent = (tab) => {
     if (tab === 0) {
         return (

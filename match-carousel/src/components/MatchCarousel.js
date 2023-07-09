@@ -72,8 +72,8 @@ export default class MatchCarousel extends Component {
             return (
                 <Card
                     key={match._id}
-                    category={category.name}
-                    tournament={tournament.seasontypename ? `${tournament.name} - ${tournament.seasontypename}` : tournament.name}
+                    categoryName={category.name}
+                    tournamentName={tournament.seasontypename ? `${tournament.name} - ${tournament.seasontypename}` : tournament.name}
                     match={match}
                 />
             );

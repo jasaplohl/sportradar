@@ -1,0 +1,10 @@
+1. To reduce the number of XHR requests I would fetch the data in the parent component and pass the sport object
+   to the match carousel component. If there would be more match carousel items on a single screen I would fetch
+   the data for each sport in a single XHR request.
+   - This would reduce the number of requests from one for each
+     carousel, to one in total.
+   - This would also optimize the match carousel initialization speed, since the data would no longer be fetched
+     and parsed inside the component.
+
+2. I would fetch only the information about the sports that would be displayed on the match carousel, to reduce
+   the unnecessary information returned by the API call.

@@ -49,3 +49,5 @@ b) Helpers
 - I would stop the autoplay animation on hover over the card so that you can take your time
   to read the information
 - Display a default image, if there is no team badge.
+- Save the matches in the state of the MatchCarousel component instead of getting them from the
+  sport object every time.

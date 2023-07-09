@@ -46,7 +46,6 @@ p, h1, h2 {
 
 .team {
     width: 7rem;
-    word-break: normal;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -65,7 +64,6 @@ p, h1, h2 {
     width: 100%;
     aspect-ratio: 1/1;
     height: auto;
-    transition: width 0.5s, height 0.5s;
 }
 
 .pill {
@@ -74,8 +72,6 @@ p, h1, h2 {
     margin-bottom: 2rem;
     background-color: grey;
     border-radius: 0.25rem;
-    text-align: center;
-    width: fit-content;
     text-transform: uppercase;
 }
 
@@ -104,6 +100,18 @@ p, h1, h2 {
 
     .team-name-short {
         display: block;
+    }
+}
+
+@media (max-width: 520px) {
+    .card-header > h2 {
+        width: 100%;
+        line-height: 1.3rem;
+        height: 1.3rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-block: 0;
     }
 }
 

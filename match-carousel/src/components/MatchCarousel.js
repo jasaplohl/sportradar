@@ -44,7 +44,7 @@ export default class MatchCarousel extends Component {
                 currentMatch: matchIndex,
             });
         } else {
-            const matches = this.getMatches();
+            const matches = this.getMatches(); // I should save the matches in the state of the component
             if (matches) {
                 this.setState({
                     currentMatch: this.state.currentMatch === matches.length - 1 ? 0 : this.state.currentMatch + 1,
